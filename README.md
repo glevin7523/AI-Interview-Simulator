@@ -94,11 +94,14 @@ ASSEMBLY_API_KEY = "your_assemblyai_api_key"
 python app.py
 Then visit 👉 http://127.0.0.1:5000 to start your interview simulation!
 ________________________________________
+
 **📄 License**
+
 **MIT License**
 Use this project freely for personal or commercial purposes. Contributions and credits are always welcome!
 
 🙏 Please credit the author if you feature this in your portfolio or public demo.
+
 
 **🙌 Acknowledgments**
 Thanks to the amazing APIs and libraries that power this project:
@@ -110,6 +113,7 @@ Thanks to the amazing APIs and libraries that power this project:
 📊 Chart.js – For dynamic analytics and dashboard visualizations
 
 🧾 FPDF – For exporting performance feedback as PDF reports
+
 
 **✨ Author**
 **Glevin Roche**
