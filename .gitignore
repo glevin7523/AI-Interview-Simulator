@@ -1,0 +1,10 @@
+__pycache__/
+venv/
+*.webm
+*.mp3
+responses.json
+temp_audio.webm
+static/audio/
+static/reports/
+.env
+config.py

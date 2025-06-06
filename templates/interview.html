@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Answer Question</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2 class="title">Question {{ q_num }}</h2>
+    <p class="subtitle">{{ question }}</p>
+
+    <button id="record-btn" class="start-btn">🎙️ Start Recording</button>
+    <p id="status" style="margin-top: 10px;"></p>
+
+    <form method="POST" action="{{ url_for('submit_answer') }}">
+      <input type="hidden" name="transcript" id="transcriptInput">
+      <textarea id="transcriptBox" rows="6" style="width:100%;margin-top:20px;" placeholder="Transcribed text will appear here..." readonly></textarea>
+      <br><br>
+      <button type="submit" class="start-btn" id="submitBtn" disabled>✅ Submit Answer</button>
+    </form>
+  </div>
+
+  <!-- ✅ INLINE SCRIPT BELOW -->
+  <script>
+    const assembly_api_key = "{{ config.ASSEMBLY_API_KEY }}";
+    const q_num = "{{ q_num }}";
+
+    let mediaRecorder;
+    let audioChunks = [];
+
+    document.getElementById("record-btn").onclick = async function () {
+      const status = document.getElementById("status");
+      const recordBtn = document.getElementById("record-btn");
+
+      if (mediaRecorder && mediaRecorder.state === "recording") {
+        mediaRecorder.stop();
+        recordBtn.textContent = "🎙️ Start Recording";
+        return;
+      }
+
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
+
+      mediaRecorder.onstart = () => {
+        audioChunks = [];
+        status.textContent = "Recording... 🎧";
+        recordBtn.textContent = "⏹️ Stop Recording";
+      };
+
+      mediaRecorder.ondataavailable = event => {
+        audioChunks.push(event.data);
+      };
+
+      mediaRecorder.onstop = async () => {
+        status.textContent = "Processing...";
+        const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+
+        // Save MP3 on server
+        const formData = new FormData();
+        formData.append("audio", audioBlob);
+        formData.append("q_num", q_num);
+        const saveRes = await fetch("/save_audio", {
+          method: "POST",
+          body: formData,
+        });
+        const saveData = await saveRes.json();
+        const mp3Filename = saveData.filename;
+
+        // Upload to AssemblyAI
+        const uploadRes = await fetch("https://api.assemblyai.com/v2/upload", {
+          method: "POST",
+          headers: { authorization: assembly_api_key },
+          body: audioBlob
+        });
+        const uploadData = await uploadRes.json();
+
+        // Transcription request
+        const transcriptRes = await fetch("https://api.assemblyai.com/v2/transcript", {
+          method: "POST",
+          headers: {
+            authorization: assembly_api_key,
+            "content-type": "application/json"
+          },
+          body: JSON.stringify({
+            audio_url: uploadData.upload_url
+          })
+        });
+
+        const transcriptData = await transcriptRes.json();
+
+        let completed = false;
+        let transcriptText = "";
+
+        while (!completed) {
+          const polling = await fetch(`https://api.assemblyai.com/v2/transcript/${transcriptData.id}`, {
+            headers: { authorization: assembly_api_key }
+          });
+          const pollingData = await polling.json();
+
+          if (pollingData.status === "completed") {
+            transcriptText = pollingData.text;
+            completed = true;
+          } else if (pollingData.status === "error") {
+            transcriptText = "Transcription failed.";
+            completed = true;
+          } else {
+            await new Promise(resolve => setTimeout(resolve, 2000));
+          }
+        }
+
+        document.getElementById("transcriptBox").value = transcriptText;
+        document.getElementById("transcriptInput").value = transcriptText;
+        document.getElementById("status").textContent = "Transcription complete ✅";
+        document.getElementById("submitBtn").disabled = false;
+
+        // Attach audio filename to form
+        const audioInput = document.createElement("input");
+        audioInput.type = "hidden";
+        audioInput.name = "audio_file";
+        audioInput.value = mp3Filename;
+        document.querySelector("form").appendChild(audioInput);
+      };
+
+      mediaRecorder.start();
+    };
+  </script>
+</body>
+</html>

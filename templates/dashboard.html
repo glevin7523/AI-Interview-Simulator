@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Interview Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle at center, #0f0f0f, #090909);
+      color: #fff;
+      padding: 2rem;
+      animation: fadeIn 1.5s ease;
+    }
+
+    .dashboard-container {
+      max-width: 1000px;
+      margin: auto;
+      background: #151515;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    }
+
+    .card {
+      background: #1a1a1a;
+      padding: 1rem;
+      border-radius: 12px;
+      margin: 1rem 0;
+      box-shadow: 0 0 15px rgba(0, 255, 200, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 25px rgba(0, 255, 200, 0.4);
+    }
+
+    canvas {
+      background-color: #1a1a1a;
+      border-radius: 12px;
+      padding: 1rem;
+    }
+
+    audio {
+      margin-top: 8px;
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #00f7ff;
+    }
+
+    .audio-feedback {
+      background-color: #222;
+      padding: 1rem;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <h1>📊 Interview Performance Dashboard</h1>
+
+    <div class="card">
+      <h3>Total Questions Answered: {{ total_questions }}</h3>
+      <h3>Average Score: {{ avg_score }}%</h3>
+    </div>
+
+    <div class="card">
+    <h3>Score Progression</h3>
+    <canvas id="scoreChart" width="800" height="400"></canvas>
+    <button onclick="downloadChart('scoreChart', 'score_chart.png')" class="start-btn" style="margin-top:10px;">📥 Download Score Chart</button>
+      </div>
+
+    <div class="card">
+    <h3>Keyword Match Ratio</h3>
+    <canvas id="keywordChart" width="800" height="400"></canvas>
+    <button onclick="downloadChart('keywordChart', 'keyword_chart.png')" class="start-btn" style="margin-top:10px;">📥 Download Keyword Chart</button>
+      </div>
+
+    <div class="card audio-feedback">
+      <h3>🎧 Audio Feedback with Scores</h3>
+      {% for r in responses %}
+        <div style="margin-top: 15px;">
+          <strong>Q{{ loop.index }}:</strong> Score: {{ r.score }}/10
+          {% if r.audio_file %}
+            <audio controls src="{{ url_for('static', filename='audio/' + r.audio_file) }}"></audio>
+          {% endif %}
+          <p><em>{{ r.feedback }}</em></p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <script>
+    const scores = JSON.parse('{{ scores | tojson | safe }}');
+    const keywords = JSON.parse('{{ keywords | tojson | safe }}');
+
+    const ctx1 = document.getElementById('scoreChart').getContext('2d');
+    const ctx2 = document.getElementById('keywordChart').getContext('2d');
+
+    const scoreChart = new Chart(ctx1, {
+    type: 'line',
+    data: {
+      labels: scores.map((_, i) => "Q" + (i + 1)),
+      datasets: [{
+        label: 'Answer Score (%)',
+        data: scores,
+        borderColor: '#00f7ff',
+        backgroundColor: 'rgba(0, 247, 255, 0.1)',
+        tension: 0.4,
+        fill: true,
+      }]
+    },
+    options: {
+      responsive: true,
+      devicePixelRatio: 2,
+      scales: {
+        y: { beginAtZero: true, max: 100 }
+      }
+    }
+  });
+
+  const keywordChart = new Chart(ctx2, {
+    type: 'bar',
+    data: {
+      labels: keywords.map((_, i) => "Q" + (i + 1)),
+      datasets: [{
+        label: 'Missing Keywords (Count)',
+        data: keywords,
+        backgroundColor: '#00ffaa'
+      }]
+    },
+    options: {
+      responsive: true,
+      devicePixelRatio: 2,
+      scales: {
+        y: { beginAtZero: true }
+      }
+    }
+  });
+
+  // ⬇️ Chart Image Download Handler
+  function downloadChart(canvasId, filename) {
+    const canvas = document.getElementById(canvasId);
+    const link = document.createElement('a');
+    link.download = filename;
+    link.href = canvas.toDataURL('image/png', 1);
+    link.click();
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Interview Summary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2 class="title">🎉 Interview Complete!</h2>
+    <p class="subtitle">You have completed all questions.</p>
+
+    <h3 class="subtitle">Your Final Report:</h3>
+    <a href="{{ url_for('download_report', filename=pdf_path.split('/')[-1]) }}" class="start-btn">📥 Download PDF Report</a>
+
+    <h3 class="subtitle" style="margin-top: 30px;">Summary Scores:</h3>
+    <ul style="font-size: 18px;">
+      {% for result in results %}
+        <li>
+          <b>Q{{ loop.index }}:</b> {{ result.score }}/10 - {{ result.feedback }}
+          {% if result.audio_file %}
+            <br><audio controls src="{{ url_for('static', filename='audio/' + result.audio_file) }}"></audio>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+
+    <br>
+    <a href="{{ url_for('index') }}" class="start-btn">🔁 Restart Interview</a>
+    <a href="{{ url_for('dashboard') }}" class="start-btn">📊 View Dashboard</a>
+  </div>
+</body>
+</html>

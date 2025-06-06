@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Evaluation Result</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2 class="title">Evaluation Summary</h2>
+
+    <div class="subtitle" style="margin-bottom: 20px;">
+      <strong>Question:</strong> {{ result.question }}
+    </div>
+
+    <div class="subtitle"><strong>Your Answer:</strong><br>{{ result.answer }}</div>
+    <br>
+
+    <div class="subtitle"><strong>Score:</strong> {{ result.score }}/10</div>
+    <div class="subtitle"><strong>Feedback:</strong> {{ result.feedback }}</div>
+
+    {% if result.missing_keywords %}
+      <div class="subtitle">
+        <strong>Missing Keywords:</strong> {{ result.missing_keywords | join(", ") }}
+      </div>
+    {% endif %}
+
+    <a href="{{ url_for('interview') }}" class="start-btn" style="margin-top: 30px;">Next Question ➡️</a>
+  </div>
+</body>
+</html>
