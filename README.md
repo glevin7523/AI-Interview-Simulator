@@ -65,62 +65,42 @@ Start Interview →
 
 ---
 
-## 📊 Example Charts
+💻 **How to Run the Project Locally**
+Follow these steps to set up and run the AI Interview Simulator on your machine:
 
-> Add screenshots here once deployed
-
-![Score Chart](screenshots/score_chart.png)  
-![Keyword Match](screenshots/keyword_match.png)
-
----
-
----
-
----
-
-## 💻 **How to Run the Project Locally**
-
-Follow these steps to set up and run the **AI Interview Simulator** on your machine:
-
-### 🔁 **1. Clone the Repository**
-
-```bash
+**1️⃣ Clone the Repository**
 git clone https://github.com/yourusername/ai-interview-simulator.git
 cd ai-interview-simulator
 
-🧪 2. Set Up a Virtual Environment
-
+**2️⃣ Set Up a Virtual Environment**
 python -m venv venv
-Windows:
-
+**Activate on Windows:**
 venv\Scripts\activate
-Linux/macOS:
-
+**Activate on Linux/macOS:**
 source venv/bin/activate
-📦 3. Install Dependencies
 
+**3️⃣ Install Dependencies**
 pip install -r requirements.txt
-🔐 4. Set API Keys
-Create a file named config.py in the root of the project and add your API keys:
 
+**4️⃣ Add API Keys**
+Create a config.py file and paste:
 GEMINI_API_KEY = "your_gemini_api_key"
 ASSEMBLY_API_KEY = "your_assemblyai_api_key"
-🔗 Get your Gemini API key: https://makersuite.google.com/
-🔗 Get your AssemblyAI API key: https://www.assemblyai.com/
+🔗 Get Gemini API Key
 
-🚀 5. Run the App
+🔗 Get AssemblyAI API Key
 
+**5️⃣ Run the App**
 python app.py
-Open your browser and visit: http://127.0.0.1:5000
-Begin your simulated interview and receive real-time feedback and reports!
+Then visit 👉 http://127.0.0.1:5000 to start your interview simulation!
 ________________________________________
-📄 License
-MIT License
+**📄 License**
+**MIT License**
 Use this project freely for personal or commercial purposes. Contributions and credits are always welcome!
 
 🙏 Please credit the author if you feature this in your portfolio or public demo.
 
-🙌 Acknowledgments
+**🙌 Acknowledgments**
 Thanks to the amazing APIs and libraries that power this project:
 
 🎙️ AssemblyAI – For real-time and accurate speech-to-text
@@ -131,16 +111,15 @@ Thanks to the amazing APIs and libraries that power this project:
 
 🧾 FPDF – For exporting performance feedback as PDF reports
 
-✨ Author
-Glevin Roche
+**✨ Author**
+**Glevin Roche**
 
 💼 Passionate about building practical AI applications for real-world impact
 
-🔗 LinkedIn
+- 🔗 [LinkedIn](https://www.linkedin.com/in/glevin-roche-27b754249/)
+- 🔗 [GitHub](https://github.com/glevin7523)
+- 🌐 [Portfolio](https://glevin-portfolio.vercel.app/)
 
-🔗 GitHub
-
-🌐 Portfolio
 
 
 
