@@ -69,7 +69,7 @@ Start Interview →
 Follow these steps to set up and run the AI Interview Simulator on your machine:
 
 **1️⃣ Clone the Repository**
-git clone https://github.com/yourusername/ai-interview-simulator.git
+git clone https://github.com/glevin7523/Ai-Interview-Simulator.git
 cd ai-interview-simulator
 
 **2️⃣ Set Up a Virtual Environment**
@@ -125,7 +125,4 @@ Thanks to the amazing APIs and libraries that power this project:
 - 🔗 [LinkedIn](https://www.linkedin.com/in/glevin-roche-27b754249/)
 - 🔗 [GitHub](https://github.com/glevin7523)
 - 🌐 [Portfolio](https://glevin-portfolio.vercel.app/)
-
-
-
-
+  
