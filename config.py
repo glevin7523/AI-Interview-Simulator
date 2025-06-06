@@ -1,3 +1,3 @@
 # config.py
-ASSEMBLY_API_KEY = "1d12f770c4874279abf8371f7b3f0e26"
-GEMINI_API_KEY = "AIzaSyCw9HB3xROjjrS813H0p9mtTRPlZ5k2a0E"
+ASSEMBLY_API_KEY = "your_assemblyai_api_key"
+GEMINI_API_KEY = "your_gemini_api_key"
