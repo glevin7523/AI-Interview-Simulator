@@ -49,32 +49,6 @@ Start Interview →
 📄 Generate PDF Report →
 📊 View Interactive Dashboard
 
-## 📂 Folder Structure
-
-ai_interview_simulator/
-├── app.py
-├── config.py
-├── requirements.txt
-├── responses.json
-├── questions.json
-├── static/
-│ ├── audio/ # MP3 answers saved here
-│ ├── recorder.js # Audio recorder + transcription trigger
-│ └── style.css # Custom UI styling
-├── templates/
-│ ├── index.html
-│ ├── interview.html
-│ ├── result.html
-│ ├── final.html
-│ └── dashboard.html
-├── utils/
-│ ├── stt_assembly.py
-│ ├── evaluator_gemini.py
-│ ├── report_generator.py
-│ └── json_handler.py
-├── reports/ # PDF reports stored here
-
-
 ---
 
 ## 🔐 API Services Used
@@ -100,37 +74,15 @@ ai_interview_simulator/
 
 ---
 
-## 💻 How to Run Locally
+---
 
-1. **Clone the repo**
+## 💻 How to Run the Project Locally
+
+Follow the steps below to get started with the AI Interview Simulator on your local machine:
+
+### 🔁 1. Clone the Repositoryj
+
 ```bash
 git clone https://github.com/yourusername/ai-interview-simulator.git
-cd ai-interview-simulator
-2. **Set up a virtual environment**
-python -m venv venv
-source venv/bin/activate  # or venv\Scripts\activate on Windows
+**cd ai-interview-simulator**
 
-Install dependencies
-pip install -r requirements.txt
-
-Set API keys
-Create config.py and add:
-GEMINI_API_KEY = "your_gemini_key"
-ASSEMBLY_API_KEY = "your_assemblyai_key"
-
-Run the app
-python app.py
-
-📄 License
-MIT License. Use freely and improve it further!
-Credit appreciated if you use this in your portfolio.
-
-🙌 Acknowledgments
-AssemblyAI – For accurate, fast speech-to-text
-Google Gemini – For powerful NLP evaluation
-Chart.js – For stunning analytics
-FPDF – For smooth PDF generation
-
-✨ Author
-Glevin Roche
-LinkedIn • GitHub • Portfolio (Add links)
