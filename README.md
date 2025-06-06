@@ -76,64 +76,71 @@ Start Interview →
 
 ---
 
-## 💻 How to Run the Project Locally
+---
 
-Follow the steps below to get started with the AI Interview Simulator on your local machine:
+## 💻 **How to Run the Project Locally**
 
-### 🔁 1. Clone the Repository
+Follow these steps to set up and run the **AI Interview Simulator** on your machine:
+
+### 🔁 **1. Clone the Repository**
 
 ```bash
 git clone https://github.com/yourusername/ai-interview-simulator.git
 cd ai-interview-simulator
 
 🧪 2. Set Up a Virtual Environment
+
 python -m venv venv
-•	Windows:
+Windows:
+
 venv\Scripts\activate
-•	Linux/macOS:
+Linux/macOS:
+
 source venv/bin/activate
-________________________________________
 📦 3. Install Dependencies
+
 pip install -r requirements.txt
-________________________________________
 🔐 4. Set API Keys
 Create a file named config.py in the root of the project and add your API keys:
+
 GEMINI_API_KEY = "your_gemini_api_key"
 ASSEMBLY_API_KEY = "your_assemblyai_api_key"
-•	🔗 Get your Gemini API key: https://makersuite.google.com/
-•	🔗 Get your AssemblyAI API key: https://www.assemblyai.com/
-________________________________________
+🔗 Get your Gemini API key: https://makersuite.google.com/
+🔗 Get your AssemblyAI API key: https://www.assemblyai.com/
+
 🚀 5. Run the App
+
 python app.py
-•	Open your browser and visit: http://127.0.0.1:5000
-•	Begin your simulated interview and receive real-time feedback and reports!
+Open your browser and visit: http://127.0.0.1:5000
+Begin your simulated interview and receive real-time feedback and reports!
 ________________________________________
 📄 License
 MIT License
 Use this project freely for personal or commercial purposes. Contributions and credits are always welcome!
+
 🙏 Please credit the author if you feature this in your portfolio or public demo.
-________________________________________
+
 🙌 Acknowledgments
 Thanks to the amazing APIs and libraries that power this project:
-•	🎙️ AssemblyAI – For real-time and accurate speech-to-text
-•	🤖 Gemini (Google AI Studio) – For intelligent answer evaluation using NLP
-•	📊 Chart.js – For dynamic analytics and dashboard visualizations
-•	🧾 FPDF – For exporting performance feedback as PDF reports
-________________________________________
----
 
-## 👨‍💻 Author
+🎙️ AssemblyAI – For real-time and accurate speech-to-text
 
-Empowering future professionals with AI-powered mock interviews 🧠🎤  
-**Glevin Roche** – *AI Innovator | Voice-Tech Enthusiast | Data-Driven Problem Solver*
+🤖 Gemini (Google AI Studio) – For intelligent answer evaluation using NLP
 
----
+📊 Chart.js – For dynamic analytics and dashboard visualizations
 
-## 📬 Let's Connect
+🧾 FPDF – For exporting performance feedback as PDF reports
 
-- 🔗 [LinkedIn](https://www.linkedin.com/in/glevin-roche-27b754249/)
-- 🔗 [GitHub](https://github.com/glevin7523)
-- 🌐 [Portfolio](https://glevin-portfolio.vercel.app/)
+✨ Author
+Glevin Roche
 
----
+💼 Passionate about building practical AI applications for real-world impact
+
+🔗 LinkedIn
+
+🔗 GitHub
+
+🌐 Portfolio
+
+
 
