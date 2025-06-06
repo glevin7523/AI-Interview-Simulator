@@ -99,11 +99,12 @@ ________________________________________
 
 **MIT License**
 Use this project freely for personal or commercial purposes. Contributions and credits are always welcome!
-
 🙏 Please credit the author if you feature this in your portfolio or public demo.
 
+---
 
 **🙌 Acknowledgments**
+
 Thanks to the amazing APIs and libraries that power this project:
 
 🎙️ AssemblyAI – For real-time and accurate speech-to-text
@@ -114,8 +115,9 @@ Thanks to the amazing APIs and libraries that power this project:
 
 🧾 FPDF – For exporting performance feedback as PDF reports
 
-
+---
 **✨ Author**
+
 **Glevin Roche**
 
 💼 Passionate about building practical AI applications for real-world impact
