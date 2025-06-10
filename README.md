@@ -6,7 +6,7 @@ An advanced voice-based technical interview simulator that evaluates your respon
 
 ## 🚀 Live Demo
 
-[🔗 Click here to try the AI Interview Simulator (hosted on Render/Railway)](https://ai-interview-simulator-df4g.onrender.com)  
+[🔗 Click here to try the AI Interview Simulator](https://ai-interview-simulator-df4g.onrender.com)  
 
 ---
 
